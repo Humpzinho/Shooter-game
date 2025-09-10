@@ -10,4 +10,18 @@ public class SnapPoint : MonoBehaviour
     {
         gameObject.name = "SnapPoint - " + SnapPointType;
     }
+
+    private void Start()
+    {
+
+        if (TryGetComponent<BoxCollider>(out var boxCollider))
+        {
+            boxCollider.enabled = false;
+        }
+
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            meshRenderer.enabled = false;
+        }
+    }
 }
