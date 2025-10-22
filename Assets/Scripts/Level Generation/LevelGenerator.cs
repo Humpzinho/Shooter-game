@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
+    [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private Transform lastLevelPart;
     [SerializeField] private SnapPoint currentExitSnapPoint; // Reference to the last exit point where the next level part should connect
     private SnapPoint defaultSnapPoint;
@@ -47,6 +49,8 @@ public class LevelGenerator : MonoBehaviour
     {
         generationActive = false; // Stop generation if no parts are left
         GenerateNextLevelPart();
+
+        navMeshSurface.BuildNavMesh();
     }
 
     [ContextMenu("Restart Generation")]

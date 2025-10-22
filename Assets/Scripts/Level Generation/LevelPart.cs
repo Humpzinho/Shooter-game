@@ -12,6 +12,21 @@ public class LevelPart : MonoBehaviour
         intersectionColliders = intersectionCheckParent.GetComponentsInChildren<Collider>();
     }
 
+    [ContextMenu("Set Static To Environment Layer")]
+    public void SetStaticToEnvironmentLayer()
+    {
+        Transform[] allChildren = transform.GetComponentsInChildren<Transform>(true);
+
+        foreach(Transform child in allChildren)
+        {
+            if(child.gameObject.isStatic)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Environment");
+            }
+        }
+    }
+
+
     public bool IntersectionDetected()
     {
 
